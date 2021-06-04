@@ -15,6 +15,9 @@ before_script:
 
 script:
   - docker --version # print the version for logging
+  - cd $TRAVIS_BUILD_DIR/reverse-proxy
+  - docker build -t reverse-proxy .
+  - docker tag reverse-proxy rcbsupnet/reverse-proxy:latest
   - cd $TRAVIS_BUILD_DIR/udagram-api-feed
   - docker build -t udagram-api-feed .
   - docker tag udagram-api-feed rcbsupnet/udagram-api-feed:latest
