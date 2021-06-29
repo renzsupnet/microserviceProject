@@ -24,6 +24,7 @@ install:
   - docker-compose -f deployment/docker/docker-compose-build.yml build --parallel 
   - docker-compose -f deployment/docker/docker-compose-build.yml push
 script:
+  - kubectl config use-context process.env.CONTEXT
   - kubectl get pods
   - kubectl set image deployments/backend-feed backend-feed=rcbsupnet/udagram-api-feed:latest
   - kubectl set image deployments/backend-user backend-user=rcbsupnet/udagram-api-user:latest
